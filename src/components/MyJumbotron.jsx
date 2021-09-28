@@ -3,7 +3,7 @@ import { Jumbotron, Button } from "react-bootstrap"
 const NavbarHome = () => {
     return (
         <Jumbotron className="m-4">
-        <h1 className="mb-3" style={{fontWeight: "bold"}}>Your Spotify Statistics.</h1>
+        <h1 className="mb-3" style={{fontWeight: "bold"}}>Your Spotify Statistics</h1>
         <span>
             Explore your listening history, view your recently played tracks. 
         <br></br>
