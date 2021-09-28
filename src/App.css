@@ -12,8 +12,19 @@
 }
 
 #loginButton {
-  text-align: right;
   background-color: #81B29A;
   border: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#loginWithSpotify {
+  border-color: #81B29A;
+  color: #81B29A;
+  background-color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.jumbotron {
+  background-color: white;
   font-family: 'Montserrat', sans-serif;
 }
