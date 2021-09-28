@@ -1,6 +1,6 @@
 import { Navbar, Nav, Button } from "react-bootstrap"
 
-const MyNavbar = () => {
+const NavbarHome = () => {
     return (
         <Navbar bg="light" expand="lg" id="navbar" className="px-5">
         <Navbar.Brand href="#home" id="navbarBrand">STATS</Navbar.Brand>
@@ -14,4 +14,4 @@ const MyNavbar = () => {
     )
 }
 
-export default MyNavbar
+export default NavbarHome
