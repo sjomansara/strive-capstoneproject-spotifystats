@@ -42,3 +42,15 @@
   color: white;
   font-family: 'Montserrat', sans-serif;
 }
+
+.rectangle {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 600px;
+  height: 600px;
+  background: #F2CC8F;
+  border-radius: 600px 0 0 0;
+  -moz-border-radius: 600px 0 0 0;
+  -webkit-border-radius: 600px 0 0 0;
+}
