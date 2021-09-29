@@ -3,7 +3,7 @@ import MyNavbar from "../components/MyNavbar"
 import SideBar from "../components/SideBar";
 import { Row, Col } from "react-bootstrap"
 
-const RecentlyPlayed = () => {
+const Tracks = () => {
   return (
     <div>
         <MyNavbar />
@@ -11,11 +11,11 @@ const RecentlyPlayed = () => {
         <Col md={2}>
         <SideBar />
         </Col>
-        <h1>Recently Played</h1>
+        <h1>Tracks</h1>
         </Row>
         <MyFooter />
     </div>
   );
 }
 
-export default RecentlyPlayed;
+export default Tracks;
