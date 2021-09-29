@@ -71,8 +71,37 @@
   color: #000000;
 }
 
-#navText:focus {
+#linkHover {
+  text-decoration: none !important;
+}
+
+/* #navText:focus {
   background-color: #81B29A;
   border-radius: 10px;
   color: white;
+} */
+
+.nav-text-active {
+  background-color: #81B29A;
+  border-radius: 10px;
+  color: white;
+}
+
+#profile {
+  background: #F2CC8F;
+  width: 1150px;
+  height: 150px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+#profileImg {
+  border-radius: 50%;
+  border: 5px solid #ffffff;
+}
+
+#profileText {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  margin-top: 110px;
 }
