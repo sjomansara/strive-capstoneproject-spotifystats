@@ -1,8 +1,13 @@
+import MyFooter from "../components/MyFooter"
+import MyNavbar from "../components/MyNavbar"
+import SideBar from "../components/SideBar";
 
 const UserPage = () => {
   return (
     <div>
-        <h1>User Page</h1>
+        <MyNavbar />
+        <SideBar />
+        <MyFooter />
     </div>
   );
 }

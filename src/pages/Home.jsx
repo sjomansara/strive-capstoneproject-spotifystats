@@ -1,9 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import MyNavbar from '../components/MyNavbar';
 import MyJumbotron from '../components/MyJumbotron';
-import MyFooter from '../components/MyFooter';
+import MyNavbar from '../components/MyNavbar';
 import MyRectangle from '../components/MyRectangle';
 import { Row } from 'react-bootstrap';
+import MyFooter from '../components/MyFooter';
 
 const Home = () => {
   return (

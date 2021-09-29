@@ -1,6 +1,16 @@
-import { Navbar, Nav, Button } from "react-bootstrap"
+import { useEffect } from "react"
+import { Navbar, Nav } from "react-bootstrap"
+import LoginButton from "./LoginButton"
+import LogoutButton from "./LogoutButton"
 
 const MyNavbar = () => {
+    const location = window.location.pathname
+    let button = location === "/" ? <LoginButton /> : <LogoutButton />
+
+    useEffect(() => {
+        button = location === "/" ? <LoginButton /> : <LogoutButton />
+    }, [location])
+
     return (
         <Navbar bg="light" expand="lg" id="navbar" className="px-4">
         <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" fill="currentColor" className="bi bi-bar-chart-fill mr-1" style={{color: "#E07A5F"}} viewBox="0 0 16 16">
@@ -10,7 +20,7 @@ const MyNavbar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-            <Button className="badge-pill px-4 py-2" id="loginButton">LOGIN</Button>
+            {button}
             </Nav>
         </Navbar.Collapse>
         </Navbar>
