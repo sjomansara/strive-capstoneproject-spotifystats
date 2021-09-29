@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavbarHome from '../components/NavbarHome';
+import MyNavbar from '../components/MyNavbar';
 import MyJumbotron from '../components/MyJumbotron';
 import MyFooter from '../components/MyFooter';
 import MyRectangle from '../components/MyRectangle';
@@ -8,7 +8,7 @@ import { Row } from 'react-bootstrap';
 const Home = () => {
   return (
     <div>
-      <NavbarHome />
+      <MyNavbar />
       <Row>
       <MyJumbotron />
       <MyRectangle />
