@@ -1,6 +1,6 @@
 import { Navbar, Nav, Button } from "react-bootstrap"
 
-const NavbarHome = () => {
+const MyNavbar = () => {
     return (
         <Navbar bg="light" expand="lg" id="navbar" className="px-4">
         <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" fill="currentColor" className="bi bi-bar-chart-fill mr-1" style={{color: "#E07A5F"}} viewBox="0 0 16 16">
@@ -17,4 +17,4 @@ const NavbarHome = () => {
     )
 }
 
-export default NavbarHome
+export default MyNavbar

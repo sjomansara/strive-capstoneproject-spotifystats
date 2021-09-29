@@ -1,4 +1,5 @@
 import { Jumbotron, Button } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 const NavbarHome = () => {
     return (
@@ -9,9 +10,11 @@ const NavbarHome = () => {
         <br></br>
             See your most listened to artists, tracks and albums.
         </span>
+        <Link to="/userpage">
         <p>
             <Button id="loginWithSpotify" className="badge-pill mt-4 px-4 py-2">LOGIN WITH SPOTIFY</Button>
         </p>
+        </Link>
         </Jumbotron>
     )
 }
