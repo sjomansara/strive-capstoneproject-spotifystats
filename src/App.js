@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Home from './pages/Home';
 import UserPage from './pages/UserPage';
+import RecentlyPlayed from './pages/RecentlyPlayed';
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -14,8 +15,9 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/userpage" exact component={UserPage} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/userpage" component={UserPage} />
+        <Route exact path="/recentlyplayed" component={RecentlyPlayed} />
       </Switch>
     </Router>
   );

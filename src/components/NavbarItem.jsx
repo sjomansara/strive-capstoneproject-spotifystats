@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Nav } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCompactDisc, faMicrophoneAlt, faMusic, faUser, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
 const NavbarItem = (props) => {
-    const [isActive, setIsActive] = useState(false)
+    const [isActive, setIsActive] = useState(props.isActive)
+    const location = window.location.pathname
     let classText = "mb-2 mt-5"
 
     const onClickItem = (event) => {
@@ -19,14 +19,22 @@ const NavbarItem = (props) => {
         // }
     }
 
-    // useEffect(() => {
+    useEffect(() => {
+        const pathToMatch = props.to
 
-    // })
+        if (location === pathToMatch) {
+            setIsActive(true)
+        } else {
+            setIsActive(false)
+        }
+    }, [location])
 
     return (
-        <Nav.Item className={isActive ? "mb-2 nav-text-active" : "mb-2"} onClick={onClickItem}>
-            <Link id="linkHover" to={props.to}><Nav.Link className={isActive ? "text-white" : ""} id="navText"><FontAwesomeIcon icon={props.icon} /> &nbsp;{props.text}</Nav.Link></Link>
-        </Nav.Item>
+        <Link id="linkHover" to={props.to}>
+            <Nav.Item className={isActive || location === props.to ? "mb-2 pl-3 nav-text-active" : "pl-3 mb-2"} onClick={onClickItem}>
+                <div className={isActive || location === props.to ? "text-white" : ""} id="navText"><FontAwesomeIcon icon={props.icon} /> &nbsp;{props.text}</div>
+            </Nav.Item>
+        </Link>
     );
   };
 
