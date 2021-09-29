@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { Navbar, Nav } from "react-bootstrap"
+import { Link } from "react-router-dom"
 import LoginButton from "./LoginButton"
 import LogoutButton from "./LogoutButton"
 
@@ -20,7 +21,7 @@ const MyNavbar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-            {button}
+            <Link to="/userpage">{button}</Link>
             </Nav>
         </Navbar.Collapse>
         </Navbar>
