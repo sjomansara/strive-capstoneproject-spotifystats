@@ -10,7 +10,7 @@ const SideBar = () => {
 
     return (
         <div id="sideBar">
-            <Nav className="pl-4 d-none mt-4 d-md-block sidebar">
+            <Nav className="pl-4 d-none mt-3 d-md-block sidebar">
                 <div className="sidebar-sticky"></div>
                 <NavbarItem icon={faUser} isActive={location === "/userpage"} to="/userpage" text="Profile" />
                 <NavbarItem icon={faVolumeUp} isActive={location === "/recentplayed"} to="/recentlyplayed" text="Recently Played" />

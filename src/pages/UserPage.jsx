@@ -12,7 +12,9 @@ const UserPage = () => {
         <Col md={2}>
         <SideBar />
         </Col>
+        <Col md={10}>
         <Profile />
+        </Col>
         </Row>
         <MyFooter />
     </div>
