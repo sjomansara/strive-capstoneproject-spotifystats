@@ -17,12 +17,25 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+#loginButton:hover {
+  background-color: #6f9b86;
+}
+
 #loginWithSpotify {
   border-color: #81B29A;
   border: 2.5px solid;
   color: #81B29A;
   font-weight: bold;
   background-color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#loginWithSpotify:hover {
+  border-color: #81B29A;
+  border: 2.5px solid;
+  color: white;
+  font-weight: bold;
+  background-color: #81B29A;
   font-family: 'Montserrat', sans-serif;
 }
 
