@@ -75,12 +75,6 @@
   text-decoration: none !important;
 }
 
-/* #navText:focus {
-  background-color: #81B29A;
-  border-radius: 10px;
-  color: white;
-} */
-
 .nav-text-active {
   background-color: #81B29A;
   border-radius: 10px;
@@ -103,5 +97,5 @@
 #profileText {
   font-family: 'Montserrat', sans-serif;
   color: white;
-  margin-top: 110px;
+  margin-top: 115px;
 }
