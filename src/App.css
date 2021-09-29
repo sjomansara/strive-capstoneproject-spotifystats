@@ -96,6 +96,12 @@
   color: white;
 }
 
+.nav-text-active:hover {
+  background-color: #72a18a;
+  border-radius: 10px;
+  color: white;
+}
+
 #profile {
   background: #F2CC8F;
   width: 1150px;
