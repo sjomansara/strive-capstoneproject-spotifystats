@@ -27,7 +27,9 @@ const PageCover = () => {
         return (
             <Container className="my-3 ml-3" id="pageCover">
                 <Row>
-                    <h2 className="pl-3" id="pageCoverText">{header}</h2>
+                    <Col md={12}>
+                        <h2 className="pl-2" id="pageCoverText">{header}</h2>
+                    </Col>
                 </Row>
             </Container>
         )} else {
@@ -35,10 +37,10 @@ const PageCover = () => {
             <Container className="my-3 ml-3" id="pageCover">
                 <Row>
                     <Col md={10}>
-                    <h2 className="pl-3" id="pageCoverText">{header}</h2>
+                        <h2 className="pl-2" id="pageCoverText">{header}</h2>
                     </Col>
                     <Col md={2}>
-                    <ButtonDropdown />
+                        <ButtonDropdown />
                     </Col>
                 </Row>
             </Container>
