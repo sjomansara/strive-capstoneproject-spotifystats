@@ -119,3 +119,17 @@
   color: white;
   margin-top: 115px;
 }
+
+#pageCover {
+  background: #F2CC8F;
+  width: 1150px;
+  height: 150px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+#pageCoverText {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  padding-top: 105px;
+}

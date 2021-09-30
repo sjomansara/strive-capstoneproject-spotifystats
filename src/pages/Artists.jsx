@@ -1,6 +1,7 @@
 import MyFooter from "../components/MyFooter"
 import MyNavbar from "../components/MyNavbar"
 import SideBar from "../components/SideBar";
+import PageCover from "../components/PageCover";
 import { Row, Col } from "react-bootstrap"
 
 const Artists = () => {
@@ -11,7 +12,9 @@ const Artists = () => {
         <Col md={2}>
         <SideBar />
         </Col>
-        <h1>Artists</h1>
+        <Col md={10}>
+        <PageCover />
+        </Col>
         </Row>
         <MyFooter />
     </div>
