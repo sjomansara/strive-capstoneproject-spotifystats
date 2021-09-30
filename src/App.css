@@ -187,3 +187,8 @@
   color: #E07A5F;
   font-size: 20px;
 }
+
+#albumCard {
+  border: 0;
+  font-family: 'Montserrat', sans-serif;
+}
