@@ -141,6 +141,7 @@
   border-radius: 25px;
   outline: none !important;
   font-family: 'Montserrat', sans-serif;
+  width: 146px;
 }
 
 #dropdown-menu-align-right:focus {
@@ -152,4 +153,17 @@
   background-color: white;
   border-color: #F2CC8F;
   color: #F2CC8F;
+}
+
+#dropdownItem:focus {
+  background-color: #F2CC8F;
+}
+
+#dropdownItem {
+  color: #F2CC8F;
+}
+
+#dropdownItem:hover {
+  background-color: #F2CC8F;
+  color: white;
 }

@@ -1,10 +1,11 @@
 import { Button } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 
 const LoginButton = () => {
     return (
         <>
-            <Button className="badge-pill px-4 py-2" id="loginButton">LOGIN</Button>
+            <Link to="/userpage"><Button className="badge-pill px-4 py-2" id="loginButton">LOGIN</Button></Link>
         </>
     )
 }
