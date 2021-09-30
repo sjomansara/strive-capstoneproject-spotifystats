@@ -13,7 +13,7 @@ const RecentlyPlayed = () => {
 
   const fetchTracks = async () => {
     try {
-      const response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=queen")
+      const response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=britneyspears")
 
       if (response.ok) {
         const decoded = await response.json()
@@ -42,7 +42,7 @@ const RecentlyPlayed = () => {
                 <Container id="tracks" className="ml-0">
                 {tracks && tracks.map(result => {
                   counter += 1
-                  return <SingleTrack hasNumbers={false} number={counter} song={result.title} img={result.album.cover_small} artist={result.artist.name} />
+                  return <SingleTrack showTimes hasNumbers={false} number={counter} song={result.title} img={result.album.cover_small} artist={result.artist.name} />
                 }
               )}
                 </Container>

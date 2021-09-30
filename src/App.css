@@ -9,6 +9,8 @@
 
 #navbar {
   background-color: white !important;
+  position: relative;
+  position: sticky;
 }
 
 #loginButton {
@@ -75,6 +77,9 @@
 
 #sideBar {
   font-family: 'Montserrat', sans-serif;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
 }
 
 #navText {
@@ -83,7 +88,7 @@
 }
 
 #navText:hover {
-  color: #000000;
+  color: #161616;
 }
 
 #linkHover {
@@ -94,6 +99,7 @@
   background-color: #81B29A;
   border-radius: 10px;
   color: white;
+  width: 200px;
 }
 
 .nav-text-active:hover {
@@ -177,10 +183,7 @@
 }
 
 #singleRecent:hover {
-  border-style: solid;
-  border: 2;
-  border-color: #F2CC8F;
-  font-family: 'Montserrat', sans-serif;
+  background-color: #faf4ed;
 }
 
 #heartIcon {
@@ -195,4 +198,14 @@
 
 #tracks {
   margin-bottom: 75px;
+}
+
+#trackName:hover {
+  color: #161616 !important;
+  text-decoration: none !important;
+}
+
+#top {
+  margin-top: 75px;
+  margin-left: 225px !important;
 }
