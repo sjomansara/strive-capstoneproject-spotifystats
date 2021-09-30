@@ -2,7 +2,7 @@ import MyFooter from "../components/MyFooter"
 import MyNavbar from "../components/MyNavbar"
 import SideBar from "../components/SideBar";
 import PageCover from "../components/PageCover";
-import { Row, Col } from "react-bootstrap"
+import { Row, Col, Container } from "react-bootstrap"
 import SingleArtist from "../components/SingleArtist";
 
 const Artists = () => {
@@ -14,8 +14,8 @@ const Artists = () => {
         <SideBar />
         </Col>
         <Col md={10}>
-        <PageCover />
-        <SingleArtist />
+        <Container className="ml-0"><PageCover /></Container>
+        <Container className="ml-0"><SingleArtist /></Container>
         </Col>
         </Row>
         <MyFooter />

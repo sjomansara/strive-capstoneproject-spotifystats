@@ -2,7 +2,7 @@ import MyFooter from "../components/MyFooter"
 import MyNavbar from "../components/MyNavbar"
 import Profile from "../components/Profile";
 import SideBar from "../components/SideBar";
-import { Row, Col } from "react-bootstrap"
+import { Row, Col, Container } from "react-bootstrap"
 
 const UserPage = () => {
   return (
@@ -13,7 +13,7 @@ const UserPage = () => {
         <SideBar />
         </Col>
         <Col md={10}>
-        <Profile />
+        <Container className="ml-0"><Profile /></Container>
         </Col>
         </Row>
         <MyFooter />
