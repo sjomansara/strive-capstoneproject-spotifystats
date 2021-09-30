@@ -147,3 +147,9 @@
   outline: none;
   box-shadow: none;
 }
+
+#dropdown-menu-align-right:hover {
+  background-color: white;
+  border-color: #F2CC8F;
+  color: #F2CC8F;
+}
