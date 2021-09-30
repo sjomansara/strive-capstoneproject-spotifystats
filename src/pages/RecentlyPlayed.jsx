@@ -3,6 +3,7 @@ import MyNavbar from "../components/MyNavbar";
 import SideBar from "../components/SideBar";
 import PageCover from "../components/PageCover";
 import { Row, Col } from "react-bootstrap";
+import SingleRecent from "../components/SingleRecent";
 
 const RecentlyPlayed = () => {
   return (
@@ -13,7 +14,10 @@ const RecentlyPlayed = () => {
         <SideBar />
         </Col>
         <Col md={10}>
+        <div>
         <PageCover />
+        <SingleRecent />
+        </div>
         </Col>
         </Row>
         <MyFooter />

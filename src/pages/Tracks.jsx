@@ -3,6 +3,7 @@ import MyNavbar from "../components/MyNavbar"
 import SideBar from "../components/SideBar";
 import { Row, Col } from "react-bootstrap"
 import PageCover from "../components/PageCover";
+import SingleTrack from "../components/SingleTrack";
 
 const Tracks = () => {
   return (
@@ -14,6 +15,7 @@ const Tracks = () => {
         </Col>
         <Col md={10}>
         <PageCover />
+        <SingleTrack />
         </Col>
         </Row>
         <MyFooter />

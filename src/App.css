@@ -58,6 +58,7 @@
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-size: 17px;
+  z-index: 1000;
 }
 
 .rectangle {
@@ -161,9 +162,28 @@
 
 #dropdownItem {
   color: #F2CC8F;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #dropdownItem:hover {
   background-color: #F2CC8F;
   color: white;
+}
+
+#singleRecent {
+  width: 1150px;
+  height: 83px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#singleRecent:hover {
+  border-style: solid;
+  border: 2;
+  border-color: #F2CC8F;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#heartIcon {
+  color: #E07A5F;
+  font-size: 20px;
 }
