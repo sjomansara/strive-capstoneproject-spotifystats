@@ -133,3 +133,17 @@
   color: white;
   padding-top: 105px;
 }
+
+#dropdown-menu-align-right {
+  margin-top: 105px;
+  background-color: #F2CC8F;
+  border-color: white;
+  border-radius: 25px;
+  outline: none !important;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#dropdown-menu-align-right:focus {
+  outline: none;
+  box-shadow: none;
+}
