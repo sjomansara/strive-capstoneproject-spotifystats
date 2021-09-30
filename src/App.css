@@ -193,6 +193,12 @@
 #albumCard {
   border: 0;
   font-family: 'Montserrat', sans-serif;
+  border-radius: 0px;
+}
+
+#albumCard:hover {
+  border: 0;
+  background-color: #faf4ed;
 }
 
 #tracks {
