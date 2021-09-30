@@ -13,7 +13,7 @@ const Tracks = () => {
 
   const fetchTracks = async () => {
     try {
-      const response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=any")
+      const response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=fleetwoodmac")
 
       if (response.ok) {
         const decoded = await response.json()

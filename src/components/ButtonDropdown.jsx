@@ -4,7 +4,7 @@ const ButtonDropdown = () => {
     return (
         <div>
             <DropdownButton
-            className="ml-3"
+            className="ml-2"
             title="Last 30 days"
             id="dropdown-menu-align-right"
             >
