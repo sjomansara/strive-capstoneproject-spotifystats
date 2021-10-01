@@ -10,13 +10,13 @@ const PageCover = () => {
             header = "Recently Played"
             break
         case "/tracks":
-            header = "Tracks"
+            header = "Top Tracks"
             break
         case "/albums":
-            header = "Albums"
+            header = "Top Albums"
             break
         case "/artists":
-            header = "Artists"
+            header = "Top Artists"
             break
         case "/details":
             header = "Details"
