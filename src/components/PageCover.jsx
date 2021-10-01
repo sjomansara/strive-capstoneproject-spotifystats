@@ -18,12 +18,15 @@ const PageCover = () => {
         case "/artists":
             header = "Artists"
             break
+        case "/details":
+            header = "Details"
+            break
         default: 
             header = ""
             break
     }
 
-    if (location === "/recentlyplayed") {
+    if (location === "/recentlyplayed" || location === "/details") {
         return (
             <Container className="my-3 ml-3" id="pageCover">
                 <Row>

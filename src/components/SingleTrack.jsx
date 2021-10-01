@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
 const SingleTrack = (props) => {
     const [isFavorite, setIsFavorite] = useState(false)
@@ -18,16 +19,16 @@ const SingleTrack = (props) => {
                     <p className="mt-4 ml-5 text-muted">{props.number}.</p>
                 </Col>}
                 <Col md={2}>
-                    <a href=""><img className="mt-2 ml-5" src={props.img} width="60px" height="60px" /></a>
+                <Link to="/details" id="linkHover"><img className="mt-2 ml-5" src={props.img} width="60px" height="60px" /></Link>
                 </Col>
                 <Col md={1}>
                     <p id="heartIcon" className="mt-4"><FontAwesomeIcon icon={isFavorite ? faHeartSolid : faHeart} onClick={onFavorite} /></p>
                 </Col>
                 <Col md={4}>
-                    <a href="" id="linkHover"><p id="trackName" className="mt-4 text-muted">{props.song}</p></a>
+                    <Link to="/details" id="linkHover"><p id="trackName" className="mt-4 text-muted">{props.song}</p></Link>
                 </Col>
                 <Col md={3}>
-                    <a href="" id="linkHover"><p id="trackName" className="mt-4 text-muted">{props.artist}</p></a>
+                <Link to="/details" id="linkHover"><p id="trackName" className="mt-4 text-muted">{props.artist}</p></Link>
                 </Col>
                 {props.showTimes && <Col md={1}>
                     <p className="mt-3 text-muted">28 Sep 2:05pm</p>

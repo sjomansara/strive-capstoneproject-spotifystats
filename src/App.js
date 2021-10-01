@@ -6,12 +6,12 @@ import RecentlyPlayed from './pages/RecentlyPlayed';
 import Tracks from './pages/Tracks';
 import Albums from './pages/Albums';
 import Artists from './pages/Artists';
+import Details from './pages/Details';
 import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 function App() {
@@ -24,6 +24,7 @@ function App() {
         <Route exact path="/tracks" component={Tracks} />
         <Route exact path="/albums" component={Albums} />
         <Route exact path="/artists" component={Artists} />
+        <Route exact path="/details" component={Details} />
       </Switch>
     </Router>
   );
