@@ -5,27 +5,39 @@ import PageCover from "../components/PageCover";
 import { Row, Col, Container } from "react-bootstrap"
 import SingleAlbum from "../components/SingleAlbum";
 import { useState, useEffect } from "react";
+import { albumArray } from "../data/data";
 
 const Albums = () => {
   const [albums, setAlbums] = useState("")
 
   const fetchAlbums = async () => {
-    try {
-      const response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/album/1421245")
-
-      if (response.ok) {
-        const decoded = await response.json()
-        setAlbums(decoded)
-        console.log(decoded)
+    let albumData = []
+    let albumArrayCopy = albumArray
+    for (let i = 0; i < 10; i++) {
+      let randomIndex = Math.ceil(Math.random() * albumArrayCopy.length - 1)
+      console.log(randomIndex)
+      console.log("album id is: ", albumArrayCopy[randomIndex])
+      try {
+        const response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/album/" + albumArrayCopy[randomIndex])
+  
+        if (response.ok) {
+          albumArrayCopy.splice(randomIndex, 1)
+          const decoded = await response.json()
+          albumData.push(decoded)
+          console.log(decoded)
+        }
+      } catch (error) {
+        console.log("happens here: ", error)
       }
-    } catch (error) {
-      console.log(error)
     }
+    setAlbums(albumData)
   }
 
   useEffect(() => {
     fetchAlbums()
   }, [])
+
+  let counter = 0
   return (
     <div>
         <MyNavbar />
@@ -35,9 +47,15 @@ const Albums = () => {
         </Col>
         <Col md={10}>
         <Container className="ml-0"><PageCover /></Container>
-        <Container className="my-3 ml-3">
+        <Container className="my-3 ml-3 mb-5">
         <Row>
-        {albums && <SingleAlbum title={albums.title} img={albums.cover_medium} artist={albums.artist.name} />}
+        {albums && albums.map(album => {
+          if (!album.error) {
+            counter += 1
+            console.log("album in loop is: ", album)
+            return <SingleAlbum key={album.id} id={album.id} artist={album.artist.name} img={album.cover_medium} title={album.title} number={counter} />
+          }
+        })}
         </Row>
         </Container>
         </Col>

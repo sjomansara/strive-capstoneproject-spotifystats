@@ -15,7 +15,7 @@ const Artists = () => {
     let artistArrayCopy = artistArray
     for (let i = 0; i < 10; i++) {
       let randomIndex = Math.ceil(Math.random() * artistArrayCopy.length - 1)
-      console.log(randomIndex)
+      console.log("artist id is: ", artistArrayCopy[randomIndex])
       try {
         const response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/artist/" + artistArrayCopy[randomIndex])
   
@@ -47,11 +47,11 @@ const Artists = () => {
         </Col>
         <Col md={10}>
         <Container className="ml-0"><PageCover /></Container>
-        <Container className="my-3 ml-3">
+        <Container className="my-3 ml-3 mb-5">
         <Row>
         {artists && artists.map(artist => {
           counter += 1
-          return <SingleArtist id={artist.id} img={artist.picture_medium} artist={artist.name} number={counter} />
+          return <SingleArtist key={artist.id} img={artist.picture_medium} artist={artist.name} number={counter} />
         })}
         </Row>
         </Container>
