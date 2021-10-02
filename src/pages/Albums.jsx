@@ -13,7 +13,7 @@ const Albums = () => {
   const fetchAlbums = async () => {
     let albumData = []
     let albumArrayCopy = albumArray
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 21; i++) {
       let randomIndex = Math.ceil(Math.random() * albumArrayCopy.length - 1)
       console.log(randomIndex)
       console.log("album id is: ", albumArrayCopy[randomIndex])

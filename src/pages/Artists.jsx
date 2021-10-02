@@ -13,7 +13,7 @@ const Artists = () => {
   const fetchArtists = async () => {
     let artistsData = []
     let artistArrayCopy = artistArray
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 20; i++) {
       let randomIndex = Math.ceil(Math.random() * artistArrayCopy.length - 1)
       console.log("artist id is: ", artistArrayCopy[randomIndex])
       try {

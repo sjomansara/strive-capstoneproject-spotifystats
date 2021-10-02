@@ -9,8 +9,10 @@
 
 #navbar {
   background-color: white !important;
-  position: relative;
+  position: -webkit-sticky; /* Safari */
   position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 #loginButton {
@@ -78,7 +80,7 @@
   font-family: 'Montserrat', sans-serif;
   position: -webkit-sticky; /* Safari */
   position: sticky;
-  top: 0;
+  top: 100px;
 }
 
 #navText {
