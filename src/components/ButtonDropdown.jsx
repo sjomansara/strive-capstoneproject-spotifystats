@@ -26,11 +26,11 @@ const ButtonDropdown = (props) => {
             title={title}
             id="dropdown-menu-align-right"
             >
-            <Link className="ml-3" value="Last 30 days" to={props.type === "artist" ? "/artists/short_term" : "/tracks/short_term"}>Last 30 days</Link>
+            <Link className="ml-3 dropdownLink" value="Last 30 days" to={props.type === "artist" ? "/artists/short_term" : "/tracks/short_term"}>Last 30 days</Link>
             <br></br>
-            <Link className="ml-3" value="Last 6 months" to={props.type === "artist" ? "/artists/medium_term" : "/tracks/medium_term"}>Last 6 months</Link>
+            <Link className="ml-3 dropdownLink" value="Last 6 months" to={props.type === "artist" ? "/artists/medium_term" : "/tracks/medium_term"}>Last 6 months</Link>
             <br></br>
-            <Link className="ml-3" value="All Time" to={props.type === "artist" ? "/artists/long_term" : "/tracks/long_term"}>All time</Link>
+            <Link className="ml-3 dropdownLink" value="All Time" to={props.type === "artist" ? "/artists/long_term" : "/tracks/long_term"}>All time</Link>
             </DropdownButton>
         </div>
     )

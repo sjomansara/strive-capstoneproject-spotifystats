@@ -168,14 +168,14 @@
   background-color: #F2CC8F;
 }
 
-#dropdownItem {
+.dropdownLink {
   color: #F2CC8F;
   font-family: 'Montserrat', sans-serif;
 }
 
-#dropdownItem:hover {
-  background-color: #F2CC8F;
-  color: white;
+.dropdownLink:hover {
+  color: #f0ad42;
+  text-decoration: none;
 }
 
 #singleRecent {
