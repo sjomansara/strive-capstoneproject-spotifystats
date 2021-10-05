@@ -15,7 +15,6 @@ const Albums = () => {
     let albumArrayCopy = albumArray
     for (let i = 0; i < 21; i++) {
       let randomIndex = Math.ceil(Math.random() * albumArrayCopy.length - 1)
-      console.log(randomIndex)
       console.log("album id is: ", albumArrayCopy[randomIndex])
       try {
         const response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/album/" + albumArrayCopy[randomIndex])
@@ -24,10 +23,9 @@ const Albums = () => {
           albumArrayCopy.splice(randomIndex, 1)
           const decoded = await response.json()
           albumData.push(decoded)
-          console.log(decoded)
         }
       } catch (error) {
-        console.log("happens here: ", error)
+        console.error("happens here: ", error)
       }
     }
     setAlbums(albumData)
@@ -52,8 +50,7 @@ const Albums = () => {
         {albums && albums.map(album => {
           if (!album.error) {
             counter += 1
-            console.log("album in loop is: ", album)
-            return <SingleAlbum key={album.id} id={album.id} artist={album.artist.name} img={album.cover_medium} title={album.title} number={counter} />
+            return <SingleAlbum id={album.id} key={album.id} id={album.id} artist={album.artist.name} img={album.cover_medium} title={album.title} number={counter} />
           }
         })}
         </Row>

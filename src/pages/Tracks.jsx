@@ -40,8 +40,9 @@ const Tracks = () => {
               <Container className="ml-0"><PageCover /></Container>
               <Container id="tracks" className="ml-0">
               {tracks && tracks.map(result => {
+                  console.log("result is: ", result)
                   counter += 1
-                  return <SingleTrack showTimes={false} hasNumbers number={counter} song={result.title} img={result.album.cover_small} artist={result.artist.name} />
+                  return <SingleTrack id={result.id} showTimes={false} hasNumbers number={counter} song={result.title} img={result.album.cover_small} artist={result.artist.name} />
                 }
               )}
               </Container>
