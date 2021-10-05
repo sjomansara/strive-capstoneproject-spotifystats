@@ -26,7 +26,7 @@ const NavbarHome = () => {
             clientId={"72bff28ce0d6408cb89d258eb550bc35"}
             redirectUri={"http://localhost:3000/callback"}
             onSuccess={onSuccess}
-            scope="user-top-read user-read-recently-played"
+            scope="user-top-read user-read-recently-played user-library-read"
             // onFailure={onFailure} 
             />
         </p>

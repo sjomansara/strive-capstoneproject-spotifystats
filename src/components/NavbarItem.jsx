@@ -31,8 +31,8 @@ const NavbarItem = (props) => {
 
     return (
         <Link id="linkHover" to={props.to}>
-            <Nav.Item className={isActive || location === props.to ? "mb-2 pl-3 nav-text-active text-muted" : "pl-3 mb-2 text-muted"} onClick={onClickItem}>
-                <div className={isActive || location === props.to ? "text-white" : ""} id="navText"><FontAwesomeIcon icon={props.icon} /> &nbsp;{props.text}</div>
+            <Nav.Item className={isActive || location.startsWith(props.startsWith) ? "mb-2 pl-3 nav-text-active text-muted" : "pl-3 mb-2 text-muted"} onClick={onClickItem}>
+                <div className={isActive || location.startsWith(props.startsWith) ? "text-white" : ""} id="navText"><FontAwesomeIcon icon={props.icon} /> &nbsp;{props.text}</div>
             </Nav.Item>
         </Link>
     );

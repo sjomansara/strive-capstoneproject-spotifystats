@@ -5,38 +5,49 @@ import PageCover from "../components/PageCover";
 import { Row, Col, Container } from "react-bootstrap"
 import SingleArtist from "../components/SingleArtist";
 import { useState, useEffect } from "react";
-import { artistArray } from "../data/data";
+import Cookies from "universal-cookie";
+import { useParams } from "react-router-dom";
 
 const Artists = () => {
   const [artists, setArtists] = useState("")
+  const cookies = new Cookies()
+  const token = cookies.get("token")
+  const params = useParams()
+  console.log(params)
+  
+  let counter = 0
+  let fetchString = "https://api.spotify.com/v1/me/top/artists"
+
+  switch (params.time) {
+    case ("short_term"):
+      fetchString += "?time_range=short_term"
+      break
+    case ("long_term"):
+      fetchString += "?time_range=long_term"
+      break
+  }
 
   const fetchArtists = async () => {
-    let artistsData = []
-    let artistArrayCopy = artistArray
-    for (let i = 0; i < 20; i++) {
-      let randomIndex = Math.ceil(Math.random() * artistArrayCopy.length - 1)
-      console.log("artist id is: ", artistArrayCopy[randomIndex])
-      try {
-        const response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/artist/" + artistArrayCopy[randomIndex])
-  
-        if (response.ok) {
-          artistArrayCopy.splice(randomIndex, 1)
-          const decoded = await response.json()
-          artistsData.push(decoded)
-          console.log(decoded)
+    try {
+      const response = await fetch(fetchString, {
+        headers: {
+          "Authorization": "Bearer " + token
         }
-      } catch (error) {
-        console.log(error)
+      })
+
+      if (response.ok) {
+        const decoded = await response.json()
+        console.log(decoded)
+        setArtists(decoded.items)
       }
+    } catch (error) {
+      console.log(error)
     }
-    setArtists(artistsData)
   }
 
   useEffect(() => {
     fetchArtists()
-  }, [])
-
-  let counter = 0
+  }, [params])
 
   return (
     <div>
@@ -49,10 +60,11 @@ const Artists = () => {
         <Container className="ml-0"><PageCover /></Container>
         <Container className="my-3 ml-3 mb-5">
         <Row>
-        {artists && artists.map(artist => {
-          counter += 1
-          return <SingleArtist key={artist.id} img={artist.picture_medium} artist={artist.name} number={counter} />
-        })}
+        {artists && artists.map(result => {
+                  counter += 1
+                  return <SingleArtist key={result.id + (Math.random() * 10000)} showTimes hasNumbers={true} number={counter} img={result.images[0].url} artist={result.name}/>
+                }
+              )}
         </Row>
         </Container>
         </Col>

@@ -23,7 +23,7 @@ function App() {
         <Route exact path="/recentlyplayed" component={RecentlyPlayed} />
         <Route exact path="/tracks" component={Tracks} />
         <Route exact path="/albums" component={Albums} />
-        <Route exact path="/artists" component={Artists} />
+        <Route exact path="/artists/:time" component={Artists} />
         <Route exact path="/details/:type/:id" component={Details} />
       </Switch>
     </Router>

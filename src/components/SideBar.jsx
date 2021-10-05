@@ -15,8 +15,8 @@ const SideBar = () => {
                 <NavbarItem icon={faUser} isActive={location === "/userpage"} to="/userpage" text="Profile" />
                 <NavbarItem icon={faVolumeUp} isActive={location === "/recentplayed"} to="/recentlyplayed" text="Recently Played" />
                 <NavbarItem icon={faMusic} to="/tracks" text="Tracks" />
-                <NavbarItem icon={faCompactDisc} to="/albums" text="Albums" />
-                <NavbarItem icon={faMicrophoneAlt} to="/artists" text="Artists" />
+                {/* <NavbarItem icon={faCompactDisc} to="/albums" text="Albums" /> */}
+                <NavbarItem icon={faMicrophoneAlt} startsWith="/artists" isActive={location.startsWith("/artists")} to="/artists/long_term" text="Artists" />
             </Nav>
         </div>
         );

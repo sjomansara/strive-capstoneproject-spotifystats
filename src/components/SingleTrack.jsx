@@ -32,8 +32,8 @@ const SingleTrack = (props) => {
                 <Col md={3}>
                 <Link to="/details" id="linkHover"><p id="trackName" className="mt-4 text-muted">{props.artist}</p></Link>
                 </Col>
-                {props.showTimes && <Col md={1}>
-                    <p className="mt-3 text-muted">{date}</p>
+                {props.showTimes && <Col md={2}>
+                    {props.hasDate && <p className="mt-3 text-muted">{date}</p>}
                 </Col>}
             </Row>
         </Container>

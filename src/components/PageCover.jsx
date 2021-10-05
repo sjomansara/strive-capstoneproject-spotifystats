@@ -43,7 +43,7 @@ const PageCover = () => {
                         <h2 className="pl-2" id="pageCoverText">{header}</h2>
                     </Col>
                     <Col md={2}>
-                        <ButtonDropdown />
+                        <ButtonDropdown type={location.startsWith("/artists") ? "artist" : "tracks"} />
                     </Col>
                 </Row>
             </Container>

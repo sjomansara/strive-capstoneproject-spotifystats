@@ -6,36 +6,37 @@ import { Row, Col, Container } from "react-bootstrap"
 import SingleAlbum from "../components/SingleAlbum";
 import { useState, useEffect } from "react";
 import { albumArray } from "../data/data";
+import Cookies from "universal-cookie";
+import SingleTrack from "../components/SingleTrack";
 
 const Albums = () => {
-  const [albums, setAlbums] = useState("")
+  const [tracks, setTracks] = useState("")
+  const cookies = new Cookies()
+  const token = cookies.get("token")
 
-  const fetchAlbums = async () => {
-    let albumData = []
-    let albumArrayCopy = albumArray
-    for (let i = 0; i < 21; i++) {
-      let randomIndex = Math.ceil(Math.random() * albumArrayCopy.length - 1)
-      console.log("album id is: ", albumArrayCopy[randomIndex])
-      try {
-        const response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/album/" + albumArrayCopy[randomIndex])
-  
-        if (response.ok) {
-          albumArrayCopy.splice(randomIndex, 1)
-          const decoded = await response.json()
-          albumData.push(decoded)
+  let counter = 0
+
+  const fetchTracks = async () => {
+    try {
+      const response = await fetch("https://api.spotify.com/v1/me/tracks", {
+        headers: {
+          "Authorization": "Bearer " + token
         }
-      } catch (error) {
-        console.error("happens here: ", error)
+      })
+
+      if (response.ok) {
+        const decoded = await response.json()
+        console.log(decoded)
+        setTracks(decoded.items)
       }
+    } catch (error) {
+      console.log(error)
     }
-    setAlbums(albumData)
   }
 
   useEffect(() => {
-    fetchAlbums()
+    fetchTracks()
   }, [])
-
-  let counter = 0
   return (
     <div>
         <MyNavbar />
@@ -47,12 +48,11 @@ const Albums = () => {
         <Container className="ml-0"><PageCover /></Container>
         <Container className="my-3 ml-3 mb-5">
         <Row>
-        {albums && albums.map(album => {
-          if (!album.error) {
-            counter += 1
-            return <SingleAlbum id={album.id} key={album.id} id={album.id} artist={album.artist.name} img={album.cover_medium} title={album.title} number={counter} />
-          }
-        })}
+        {tracks && tracks.map(result => {
+                  counter += 1
+                  return <SingleTrack hasDate={false} key={result.id + (Math.random() * 10000)} showTimes hasNumbers={false} number={counter} song={result.track.name} img={result.track.album.images[0].url} artist={result.track.artists[0].name}/>
+                }
+              )}
         </Row>
         </Container>
         </Col>
