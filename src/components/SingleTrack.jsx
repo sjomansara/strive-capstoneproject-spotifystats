@@ -12,6 +12,8 @@ const SingleTrack = (props) => {
         setIsFavorite(!isFavorite)
     }
 
+    const date = new Date(props.time).toDateString()
+
     return (
         <Container className="my-3 ml-3" id="singleRecent">
             <Row>
@@ -31,7 +33,7 @@ const SingleTrack = (props) => {
                 <Link to="/details" id="linkHover"><p id="trackName" className="mt-4 text-muted">{props.artist}</p></Link>
                 </Col>
                 {props.showTimes && <Col md={1}>
-                    <p className="mt-3 text-muted">28 Sep 2:05pm</p>
+                    <p className="mt-3 text-muted">{date}</p>
                 </Col>}
             </Row>
         </Container>

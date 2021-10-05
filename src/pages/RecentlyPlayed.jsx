@@ -5,20 +5,27 @@ import SideBar from "../components/SideBar";
 import PageCover from "../components/PageCover";
 import { Row, Col, Container } from "react-bootstrap";
 import SingleTrack from "../components/SingleTrack";
+import Cookies from 'universal-cookie'
 
 const RecentlyPlayed = () => {
   const [tracks, setTracks] = useState("")
+  const cookies = new Cookies()
+  const token = cookies.get("token")
 
   let counter = 0
 
   const fetchTracks = async () => {
     try {
-      const response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=britneyspears")
+      const response = await fetch("https://api.spotify.com/v1/me/player/recently-played", {
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      })
 
       if (response.ok) {
         const decoded = await response.json()
-        setTracks(decoded.data)
-        console.log(decoded.data)
+        console.log(decoded)
+        setTracks(decoded.items)
       }
     } catch (error) {
       console.log(error)
@@ -42,7 +49,7 @@ const RecentlyPlayed = () => {
                 <Container id="tracks" className="ml-0">
                 {tracks && tracks.map(result => {
                   counter += 1
-                  return <SingleTrack showTimes hasNumbers={false} number={counter} song={result.title} img={result.album.cover_small} artist={result.artist.name} />
+                  return <SingleTrack key={result.track.id + (Math.random() * 10000)} showTimes hasNumbers={false} number={counter} song={result.track.name} img={result.track.album.images[0].url} artist={result.track.artists[0].name} time={result.played_at} />
                 }
               )}
                 </Container>

@@ -25,16 +25,17 @@
   background-color: #72a18a;
 }
 
-#loginWithSpotify {
+.loginWithSpotify {
   border-color: #81B29A;
   border: 2.5px solid;
   color: #81B29A;
   font-weight: bold;
   background-color: white;
   font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
 }
 
-#loginWithSpotify:hover {
+.loginWithSpotify:hover {
   border-color: #81B29A;
   border: 2.5px solid;
   color: white;

@@ -5,6 +5,7 @@ import MyRectangle from '../components/MyRectangle';
 import { Row } from 'react-bootstrap';
 import MyFooter from '../components/MyFooter';
 
+
 const Home = () => {
   return (
     <div>

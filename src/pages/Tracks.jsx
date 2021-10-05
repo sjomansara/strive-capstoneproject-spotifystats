@@ -5,20 +5,27 @@ import { Row, Col, Container } from "react-bootstrap"
 import PageCover from "../components/PageCover";
 import SingleTrack from "../components/SingleTrack";
 import { useEffect, useState } from "react";
+import Cookies from "universal-cookie";
 
 const Tracks = () => {
   const [tracks, setTracks] = useState("")
+  const cookies = new Cookies()
+  const token = cookies.get("token")
 
   let counter = 0
 
   const fetchTracks = async () => {
     try {
-      const response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=fleetwoodmac")
+      const response = await fetch("https://api.spotify.com/v1/me/top/tracks", {
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      })
 
       if (response.ok) {
         const decoded = await response.json()
-        setTracks(decoded.data)
-        console.log(decoded.data)
+        console.log(decoded)
+        setTracks(decoded.items)
       }
     } catch (error) {
       console.log(error)
@@ -40,9 +47,8 @@ const Tracks = () => {
               <Container className="ml-0"><PageCover /></Container>
               <Container id="tracks" className="ml-0">
               {tracks && tracks.map(result => {
-                  console.log("result is: ", result)
                   counter += 1
-                  return <SingleTrack id={result.id} showTimes={false} hasNumbers number={counter} song={result.title} img={result.album.cover_small} artist={result.artist.name} />
+                  return <SingleTrack key={result.id + (Math.random() * 10000)} showTimes hasNumbers={true} number={counter} song={result.name} img={result.album.images[0].url} artist={result.artists[0].name}/>
                 }
               )}
               </Container>
