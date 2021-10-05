@@ -15,15 +15,15 @@ const PageCover = () => {
         case "/albums":
             header = "Top Albums"
             break
-        case "/artists":
-            header = "Top Artists"
-            break
         case "/details":
             header = "Details"
             break
         default: 
             header = ""
             break
+    }
+    if (location.startsWith("/artists")) {
+        header = "Top Artists"
     }
 
     if (location === "/recentlyplayed" || location === "/details") {
