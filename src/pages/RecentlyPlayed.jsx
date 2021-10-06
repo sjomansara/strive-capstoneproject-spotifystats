@@ -3,12 +3,14 @@ import MyFooter from "../components/MyFooter";
 import MyNavbar from "../components/MyNavbar";
 import SideBar from "../components/SideBar";
 import PageCover from "../components/PageCover";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Spinner, Alert } from "react-bootstrap";
 import SingleTrack from "../components/SingleTrack";
 import Cookies from 'universal-cookie'
 
 const RecentlyPlayed = () => {
   const [tracks, setTracks] = useState("")
+  const [isError, setIsError] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const cookies = new Cookies()
   const token = cookies.get("token")
 
@@ -26,9 +28,13 @@ const RecentlyPlayed = () => {
         const decoded = await response.json()
         console.log(decoded)
         setTracks(decoded.items)
+      } else {
+        setIsError(true)
+        setIsLoading(false)
       }
     } catch (error) {
-      console.log(error)
+      setIsError(true)
+      setIsLoading(false)
     }
   }
 
@@ -47,6 +53,16 @@ const RecentlyPlayed = () => {
               <div>
                 <Container className="ml-0"><PageCover /></Container>
                 <Container id="tracks" className="ml-0">
+                {
+                    isLoading && tracks === "" &&
+                    <Spinner animation="border" variant="dark" className="spinner mb-3"/>
+                }
+                  {
+                    isError &&
+                    <Alert variant="danger" className="col-2">
+                        An error occurred!
+                    </Alert>
+                }
                 {tracks && tracks.map(result => {
                   counter += 1
                   return <SingleTrack hasDate key={result.track.id + (Math.random() * 10000)} showTimes hasNumbers={false} number={counter} song={result.track.name} img={result.track.album.images[0].url} artist={result.track.artists[0].name} time={result.played_at} />

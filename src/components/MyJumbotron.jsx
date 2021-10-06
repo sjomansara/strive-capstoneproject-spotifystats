@@ -17,7 +17,7 @@ const NavbarHome = () => {
         <span>
             Explore your listening history, view your recently played tracks. 
         <br></br>
-            See your most listened to artists, tracks and albums.
+            See your most listened to artists and tracks.
         </span>
         <Link to="/userpage">
         <p>

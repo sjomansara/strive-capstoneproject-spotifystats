@@ -11,7 +11,7 @@ import { useParams } from "react-router-dom";
 const Artists = () => {
   const [artists, setArtists] = useState("")
   const [isError, setIsError] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const cookies = new Cookies()
   const token = cookies.get("token")
   const params = useParams()
@@ -31,6 +31,7 @@ const Artists = () => {
 
   const fetchArtists = async () => {
     try {
+      setIsLoading(true)
       const response = await fetch(fetchString, {
         headers: {
           "Authorization": "Bearer " + token
@@ -38,6 +39,7 @@ const Artists = () => {
       })
 
       if (response.ok) {
+        setIsLoading(false)
         const decoded = await response.json()
         console.log(decoded)
         setArtists(decoded.items)
@@ -66,7 +68,7 @@ const Artists = () => {
         <Container className="ml-0"><PageCover /></Container>
         <Container className="my-3 ml-3 mb-5">
         {
-                    isLoading && 
+                    isLoading && artists === "" &&
                     <Spinner animation="border" variant="dark" className="spinner mb-3"/>
                 }
                   {
