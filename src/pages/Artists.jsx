@@ -2,7 +2,7 @@ import MyFooter from "../components/MyFooter"
 import MyNavbar from "../components/MyNavbar"
 import SideBar from "../components/SideBar";
 import PageCover from "../components/PageCover";
-import { Row, Col, Container } from "react-bootstrap"
+import { Row, Col, Container, Spinner, Alert } from "react-bootstrap"
 import SingleArtist from "../components/SingleArtist";
 import { useState, useEffect } from "react";
 import Cookies from "universal-cookie";
@@ -10,6 +10,8 @@ import { useParams } from "react-router-dom";
 
 const Artists = () => {
   const [artists, setArtists] = useState("")
+  const [isError, setIsError] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const cookies = new Cookies()
   const token = cookies.get("token")
   const params = useParams()
@@ -39,9 +41,13 @@ const Artists = () => {
         const decoded = await response.json()
         console.log(decoded)
         setArtists(decoded.items)
+      } else {
+        setIsError(true)
+        setIsLoading(false)
       }
     } catch (error) {
-      console.log(error)
+      setIsError(true)
+      setIsLoading(false)
     }
   }
 
@@ -59,6 +65,16 @@ const Artists = () => {
         <Col md={10}>
         <Container className="ml-0"><PageCover /></Container>
         <Container className="my-3 ml-3 mb-5">
+        {
+                    isLoading && 
+                    <Spinner animation="border" variant="dark" className="spinner mb-3"/>
+                }
+                  {
+                    isError &&
+                    <Alert variant="danger" className="col-2">
+                        An error occurred!
+                    </Alert>
+                }
         <Row>
         {artists && artists.map(result => {
                   counter += 1

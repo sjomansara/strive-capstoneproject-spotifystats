@@ -221,3 +221,8 @@
 #trackDetails {
   font-family: 'Montserrat', sans-serif;
 }
+
+.spinner {
+  margin-left: 540px;
+  color: #81B29A !important;
+}
