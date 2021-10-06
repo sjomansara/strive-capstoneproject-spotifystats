@@ -24,6 +24,9 @@ const Artists = () => {
     case ("short_term"):
       fetchString += "?time_range=short_term"
       break
+    case ("medium_term"):
+      fetchString += "?time_range=medium_term"
+      break
     case ("long_term"):
       fetchString += "?time_range=long_term"
       break

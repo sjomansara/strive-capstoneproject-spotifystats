@@ -6,6 +6,7 @@ const ButtonDropdown = (props) => {
     let title; 
 
     console.log(value)
+    console.log(props.type)
 
     switch (value.time) {
         case ("short_term"):

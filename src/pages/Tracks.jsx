@@ -6,6 +6,7 @@ import PageCover from "../components/PageCover";
 import SingleTrack from "../components/SingleTrack";
 import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
+import { useParams } from "react-router-dom";
 
 const Tracks = () => {
   const [tracks, setTracks] = useState("")
@@ -13,12 +14,26 @@ const Tracks = () => {
   const [isLoading, setIsLoading] = useState(true)
   const cookies = new Cookies()
   const token = cookies.get("token")
+  const params = useParams()
 
   let counter = 0
+  let fetchString = "https://api.spotify.com/v1/me/top/tracks"
+
+  switch (params.time) {
+    case ("short_term"):
+      fetchString += "?time_range=short_term"
+      break
+    case ("medium_term"):
+      fetchString += "?time_range=medium_term"
+      break
+    case ("long_term"):
+      fetchString += "?time_range=long_term"
+      break
+  }
 
   const fetchTracks = async () => {
     try {
-      const response = await fetch("https://api.spotify.com/v1/me/top/tracks", {
+      const response = await fetch(fetchString, {
         headers: {
           "Authorization": "Bearer " + token
         }
@@ -40,7 +55,7 @@ const Tracks = () => {
 
   useEffect(() => {
     fetchTracks()
-  }, [])
+  }, [params])
 
   return (
     <div>
