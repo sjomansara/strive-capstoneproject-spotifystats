@@ -191,7 +191,7 @@ const Details = () => {
                     <h3 className="mt-3">{details.name}</h3>
                 </Col>
                 <Col md={8} className="mb-5 albumTracks">
-                    <h4 className="text-muted ml-3 mt-3" id="trackDetails">Top Tracks:</h4>
+                    <h4 className="text-muted ml-3 mt-3" id="trackDetails">Top Tracks</h4>
                     {artistTracks && artistTracks.map(track => {
                       return <SingleTrack small showCover={false} song={track.name} />
                     })}
