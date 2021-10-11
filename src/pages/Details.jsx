@@ -129,10 +129,10 @@ const Details = () => {
             <Container className="ml-3">
               <Row>
                 <Col md={3} className="text-muted" id="trackDetails">
-                    <img src={details.images[1].url} width="350px" height="350px" />
+                    <img src={details.images[0].url} width="350px" height="350px" />
                     <h4 className="mt-3">{details.name}</h4>
                     <h5>{details.artists[0].name}</h5>
-                    <h5>4:10</h5>
+                    <h6>{details.total_tracks} tracks</h6>
                 </Col>
                 <Col md={8} className="mb-5 albumTracks">
                     {albumTracks && albumTracks.map(track => {
