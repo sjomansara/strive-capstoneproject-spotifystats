@@ -172,7 +172,7 @@ const Details = () => {
                     {details.artists && <Link to={"/details/artist/" + details.artists[0].id} id="trackName" className="text-muted"><h5>{details.artists[0].name}</h5></Link>}
                     <h6>{details.total_tracks} tracks</h6>
                 </Col>
-                <Col md={8} className="mb-5 albumTracks">
+                <Col md={8} className="albumTracks" id="tracks">
                     {albumTracks && albumTracks.map(track => {
                       console.log(track)
                       return <SingleTrack id={track.id} small showCover={false} artist={track.artists[0].name} song={track.name} />
@@ -204,7 +204,7 @@ const Details = () => {
                     {details.images && <img src={details.images[0].url} width="350px" height="350px" />}
                     <h3 className="mt-3">{details.name}</h3>
                 </Col>
-                <Col md={8} className="mb-5 albumTracks">
+                <Col md={8} className="albumTracks" id="tracks">
                     <h4 className="text-muted ml-3 mt-3 mb-3" id="trackDetails">Top Tracks</h4>
                     {artistTracks && artistTracks.map(track => {
                       return <SingleTrack img={track.album.images[0].url} albumId={track.album.id} id={track.id} small showCover={true} song={track.name} />
