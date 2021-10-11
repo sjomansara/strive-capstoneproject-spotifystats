@@ -139,7 +139,7 @@ const Details = () => {
               </Col>
               <Col md={2} className="text-muted mt-3" id="trackDetails">
                   <h4>{details.name}</h4>
-                  {details.artists && <Link to={"/details/artist/" + details.artists[0].id}><h5>{details.artists[0].name}</h5></Link>}
+                  {details.artists && <Link id="trackName" className="text-muted" to={"/details/artist/" + details.artists[0].id}><h5>{details.artists[0].name}</h5></Link>}
                   <h5>{millisToMinutesAndSeconds(details.duration_ms)}</h5>
               </Col>
               <Col md={3}>
