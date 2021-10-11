@@ -65,7 +65,7 @@ const RecentlyPlayed = () => {
                 }
                 {tracks && tracks.map(result => {
                   counter += 1
-                  return <SingleTrack hasDate key={result.track.id + (Math.random() * 10000)} showTimes hasNumbers={false} number={counter} song={result.track.name} img={result.track.album.images[0].url} artist={result.track.artists[0].name} time={result.played_at} />
+                  return <SingleTrack showCover hasDate key={result.track.id + (Math.random() * 10000)} showTimes hasNumbers={false} number={counter} song={result.track.name} img={result.track.album.images[0].url} artist={result.track.artists[0].name} time={result.played_at} />
                 }
               )}
                 </Container>

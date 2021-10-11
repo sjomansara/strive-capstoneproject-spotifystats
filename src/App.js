@@ -24,7 +24,7 @@ function App() {
         <Route exact path="/albums" component={Albums} />
         <Route exact path="/tracks/:time" component={Tracks} />
         <Route exact path="/artists/:time" component={Artists} />
-        <Route exact path="/details/:type/:id" component={Details} />
+        <Route exact path="/details" component={Details} />
       </Switch>
     </Router>
   );

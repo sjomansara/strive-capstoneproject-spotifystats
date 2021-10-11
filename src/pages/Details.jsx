@@ -7,32 +7,74 @@ import TrackDetails from "../components/TrackDetails";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { artistArray } from "../data/data";
+import Cookies from "universal-cookie";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-regular-svg-icons'
+import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
+import SingleTrack from "../components/SingleTrack";
 
 const Details = () => {
-  const [album, setAlbum] = useState("")
-  let params = useParams()
+  const [details, setDetails] = useState("") // where the data is
+  let params = "album" // useParams()
   console.log("params are", params)
+  const cookies = new Cookies()
+  const token = cookies.get("token")
+  const [isFavorite, setIsFavorite] = useState(false)
+  const [albumTracks, setAlbumTracks] = useState("")
 
-  const fetchTracks = async () => {
-    let fetchString
-    switch (params.type) {
+    const onFavorite = () => {
+        setIsFavorite(!isFavorite)
+    }
+
+  const fetchDetails = async () => {
+    let fetchString = "https://api.spotify.com/v1/search"
+    switch (params) {
       case ("track"):
-        fetchString = "https://striveschool-api.herokuapp.com/api/deezer/search?q=" + params.id
+        fetchString += "?q=toxic&type=track" // + params.id
         break
       case ("album"):
-        fetchString = "https://striveschool-api.herokuapp.com/api/deezer/album/" + params.id
+        fetchString += "?q=abbey%20road&type=album" // + params.id
         break
       case ("artist"):
-        fetchString = "https://striveschool-api.herokuapp.com/api/deezer/artist/" + params.id
+        fetchString += "?q=the%20beatles&type=artist" // + params.id
     }
 
     try {
-      const response = await fetch(fetchString)
-
+      const response = await fetch(fetchString, {
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      })
       if (response.ok) {
         const decoded = await response.json()
-        setAlbum(decoded)
-        console.log("decoded is: ", decoded)
+        if (params === "track") {
+          setDetails(decoded.tracks.items[0])
+          console.log("decoded is: ", decoded.tracks.items[0])
+        } else if (params === "album") {
+          setDetails(decoded.albums.items[0])
+          console.log("decoded is: ", decoded.albums.items[0])
+          fetchAlbumTracks(decoded.albums.items[0].id)
+        }
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const fetchAlbumTracks = async (id) => {
+    let fetchString = "https://api.spotify.com/v1/albums/" + id + "/tracks"
+
+
+    try {
+      const response = await fetch(fetchString, {
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      })
+      if (response.ok) {
+        const decoded = await response.json()
+        setAlbumTracks(decoded.items)
+        console.log("albumTracks is: ", decoded.items)
       }
     } catch (error) {
       console.error(error)
@@ -40,35 +82,71 @@ const Details = () => {
   }
 
   useEffect(() => {
-    fetchTracks()
+    fetchDetails()
   }, [])
 
-  return (
-    <div>
-        <MyNavbar />
-        <Row>
-        <Col md={2}>
-        <SideBar />
-        </Col>
-        <Col md={10}>
-        <Container className="ml-0"><PageCover /></Container>
-        {album && <Container className="ml-3"><Row>
-            <Col md={4} className="">
-                <img src={album.cover_big} width="350px" height="350px" />
-            </Col>
-            <Col md={8} className="text-muted mt-3" id="trackDetails">
-                <h4>{album.title}</h4>
-                <h5>{album.artist.name}</h5>
-                <h5>{album.duration}</h5>
-                <br></br>
-                <h5>Tracklist</h5>
-            </Col>
-        </Row></Container>}
-        </Col>
-        </Row>
-        <MyFooter />
-    </div>
-  );
+  if (params === "track") { 
+    return (
+      <div>
+          <MyNavbar />
+          <Row>
+          <Col md={2}>
+          <SideBar />
+          </Col>
+          <Col md={10}>
+          <Container className="ml-0"><PageCover /></Container>
+          {details && <Container className="ml-3"><Row>
+              <Col md={4} className="">
+                  <img src="https://lastfm.freetls.fastly.net/i/u/770x0/b44b0871748de6bf49d800f0e00f27d0.jpg#b44b0871748de6bf49d800f0e00f27d0" width="350px" height="350px" />
+              </Col>
+              <Col md={2} className="text-muted mt-3" id="trackDetails">
+                  <h4>Magic</h4>
+                  <h5>Kylie Minogue</h5>
+                  <h5>4:10</h5>
+              </Col>
+              <Col md={3}>
+                  <FontAwesomeIcon id="heartIcon" className="mt-3" icon={isFavorite ? faHeartSolid : faHeart} onClick={onFavorite} />
+              </Col>
+          </Row></Container>}
+          </Col>
+          </Row>
+          <MyFooter />
+      </div>
+    );
+  }
+  
+  if (params === "album") { 
+    return (
+      <div>
+          <MyNavbar />
+          <Row>
+          <Col md={2}>
+          <SideBar />
+          </Col>
+          <Col md={10}>
+          <Container className="ml-0"><PageCover /></Container>
+          {details && 
+            <Container className="ml-3">
+              <Row>
+                <Col md={3} className="text-muted" id="trackDetails">
+                    <img src={details.images[1].url} width="350px" height="350px" />
+                    <h4 className="mt-3">{details.name}</h4>
+                    <h5>{details.artists[0].name}</h5>
+                    <h5>4:10</h5>
+                </Col>
+                <Col md={8} className="mb-5 albumTracks">
+                    {albumTracks && albumTracks.map(track => {
+                      return <SingleTrack small showCover={false} artist={track.artists[0].name} song={track.name} />
+                    })}
+                </Col>
+            </Row>
+          </Container>}
+          </Col>
+          </Row>
+          <MyFooter />
+      </div>
+    );
+  }
 }
 
 export default Details;

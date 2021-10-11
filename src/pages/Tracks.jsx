@@ -79,7 +79,7 @@ const Tracks = () => {
                 }
               {tracks && tracks.map(result => {
                   counter += 1
-                  return <SingleTrack hasDate={false} key={result.id + (Math.random() * 10000)} showTimes hasNumbers={true} number={counter} song={result.name} img={result.album.images[0].url} artist={result.artists[0].name}/>
+                  return <SingleTrack showCover hasDate={false} key={result.id + (Math.random() * 10000)} showTimes hasNumbers={true} number={counter} song={result.name} img={result.album.images[0].url} artist={result.artists[0].name}/>
                 }
               )}
               </Container>

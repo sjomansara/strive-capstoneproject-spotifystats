@@ -184,6 +184,16 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+#singleRecentSmall {
+  width: 759px;
+  height: 83px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#singleRecentSmall:hover {
+  background-color: #faf4ed;
+}
+
 #singleRecent:hover {
   background-color: #faf4ed;
 }
@@ -229,4 +239,8 @@
   height: 80px;
   font-size: 30px;
   color: #81B29A !important;
+}
+
+.albumTracks {
+  margin-left: 80px;
 }
