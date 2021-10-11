@@ -9,7 +9,7 @@ const SingleArtist = (props) => {
                 <Card.Img className="rounded-0" variant="top" height="212px" src={props.img} />
             </Link>
             <Card.Body>
-            <Link to="/details" id="linkHover"><Card.Title key={props.id} id="trackName" className="text-muted">{props.number}. {props.artist}</Card.Title></Link>
+            <Link to={"/details/artist/" + props.id} id="linkHover"><Card.Title key={props.id} id="trackName" className="text-muted">{props.number}. {props.artist}</Card.Title></Link>
             </Card.Body>
             </Card>
     )

@@ -83,7 +83,7 @@ const Artists = () => {
         <Row>
         {artists && artists.map(result => {
                   counter += 1
-                  return <SingleArtist key={result.id + (Math.random() * 10000)} showTimes hasNumbers={true} number={counter} img={result.images[0].url} artist={result.name}/>
+                  return <SingleArtist id={result.id} key={result.id + (Math.random() * 10000)} showTimes hasNumbers={true} number={counter} img={result.images[0].url} artist={result.name}/>
                 }
               )}
         </Row>

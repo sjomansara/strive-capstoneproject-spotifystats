@@ -78,8 +78,9 @@ const Tracks = () => {
                     </Alert>
                 }
               {tracks && tracks.map(result => {
+                  console.log("result is: ", result)
                   counter += 1
-                  return <SingleTrack showCover hasDate={false} key={result.id + (Math.random() * 10000)} showTimes hasNumbers={true} number={counter} song={result.name} img={result.album.images[0].url} artist={result.artists[0].name}/>
+                  return <SingleTrack id={result.id} artistId={result.artists[0].id} albumId={result.album.id} showCover hasDate={false} key={result.id + (Math.random() * 10000)} showTimes hasNumbers={true} number={counter} song={result.name} img={result.album.images[0].url} artist={result.artists[0].name}/>
                 }
               )}
               </Container>
