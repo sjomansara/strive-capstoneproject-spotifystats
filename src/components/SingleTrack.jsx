@@ -21,10 +21,10 @@ const SingleTrack = (props) => {
                     <p className="mt-4 ml-5 text-muted">{props.number}.</p>
                 </Col>}
                 {props.showCover && <Col md={2}>
-                    <Link to={"/details/album/" + props.albumId} id="linkHover"><img className="mt-2 ml-5" src={props.img} width="60px" height="60px" /></Link>
+                    <Link to={"/details/album/" + props.albumId} id="linkHover"><img className={props.small ? "mt-2 ml-1 hvr-grow" : "mt-2 ml-5 hvr-grow"} src={props.img} width="60px" height="60px" /></Link>
                 </Col>}
                 <Col md={props.small ? "2" : "1"}>
-                    <p id="heartIcon" className={props.small ? "mt-4 ml-3" : "mt-4"}><FontAwesomeIcon icon={isFavorite ? faHeartSolid : faHeart} onClick={onFavorite} /></p>
+                    <p id="heartIcon" className={props.small ? "mt-4 ml-3 hvr-pulse-grow " : "mt-4 hvr-pulse-grow "}><FontAwesomeIcon icon={isFavorite ? faHeartSolid : faHeart} onClick={onFavorite} /></p>
                 </Col>
                 <Col md={props.small ? "6" : "4"}>
                     <Link to={"/details/track/" + props.id} id="linkHover"><p id="trackName" className="mt-4 text-muted">{props.song}</p></Link>
