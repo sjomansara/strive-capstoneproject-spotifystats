@@ -18,7 +18,7 @@ const RecentlyPlayed = () => {
 
   const fetchTracks = async () => {
     try {
-      const response = await fetch("https://api.spotify.com/v1/me/player/recently-played", {
+      const response = await fetch("https://api.spotify.com/v1/me/player/recently-played?limit=50", {
         headers: {
           "Authorization": "Bearer " + token
         }
