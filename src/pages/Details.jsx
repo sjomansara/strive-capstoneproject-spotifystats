@@ -1,12 +1,10 @@
 import MyFooter from "../components/MyFooter"
 import MyNavbar from "../components/MyNavbar"
 import SideBar from "../components/SideBar";
-import { Row, Col, Container } from "react-bootstrap"
+import { Row, Col, Container, Spinner, Alert } from "react-bootstrap"
 import PageCover from "../components/PageCover";
-import TrackDetails from "../components/TrackDetails";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { artistArray } from "../data/data";
 import Cookies from "universal-cookie";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
@@ -24,10 +22,11 @@ const Details = () => {
   const [albumTracks, setAlbumTracks] = useState("")
   const [artistTracks, setArtistTracks] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
 
-    const onFavorite = () => {
-        setIsFavorite(!isFavorite)
-    }
+  const onFavorite = () => {
+      setIsFavorite(!isFavorite)
+  }
 
   const fetchDetails = async () => {
     setIsLoading(true)
@@ -87,9 +86,13 @@ const Details = () => {
         const decoded = await response.json()
         setAlbumTracks(decoded.items)
         console.log("albumTracks is: ", decoded.items)
+      } else {
+        setIsError(true)
+        setIsLoading(false)
       }
     } catch (error) {
-      console.error(error)
+      setIsError(true)
+      setIsLoading(false)
     }
   }
 
@@ -133,6 +136,16 @@ const Details = () => {
           </Col>
           <Col md={10}>
           <Container className="ml-0"><PageCover /></Container>
+          {
+                    isLoading &&
+                    <Spinner animation="border" variant="dark" className="spinner mb-3"/>
+                }
+                  {
+                    isError &&
+                    <Alert variant="danger" className="col-2">
+                        An error occurred!
+                    </Alert>
+                }
           {details && !isLoading && <Container className="ml-3"><Row>
               <Col md={4} className="">
                 {details.album && <img src={details.album.images[0].url} width="350px" height="350px" />}
@@ -163,6 +176,16 @@ const Details = () => {
           </Col>
           <Col md={10}>
           <Container className="ml-0"><PageCover /></Container>
+          {
+                    isLoading &&
+                    <Spinner animation="border" variant="dark" className="spinner mb-3"/>
+                }
+                  {
+                    isError &&
+                    <Alert variant="danger" className="col-2">
+                        An error occurred!
+                    </Alert>
+                }
           {details && !isLoading &&
             <Container className="ml-3">
               {details && <Row>
@@ -197,6 +220,16 @@ const Details = () => {
           </Col>
           <Col md={10}>
           <Container className="ml-0"><PageCover /></Container>
+          {
+                    isLoading &&
+                    <Spinner animation="border" variant="dark" className="spinner mb-3"/>
+                }
+                  {
+                    isError &&
+                    <Alert variant="danger" className="col-2">
+                        An error occurred!
+                    </Alert>
+                }
           {details && !isLoading && 
             <Container className="ml-3">
               <Row>
