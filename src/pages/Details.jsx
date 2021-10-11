@@ -156,7 +156,7 @@ const Details = () => {
                   <h5>{millisToMinutesAndSeconds(details.duration_ms)}</h5>
               </Col>
               <Col md={3}>
-                  <FontAwesomeIcon id="heartIcon" className="mt-3" icon={isFavorite ? faHeartSolid : faHeart} onClick={onFavorite} />
+                  <FontAwesomeIcon id="heartIcon" className="mt-3 hvr-pulse-grow" icon={isFavorite ? faHeartSolid : faHeart} onClick={onFavorite} />
               </Col>
           </Row></Container>}
           </Col>
@@ -193,12 +193,12 @@ const Details = () => {
                     {details.images && <img src={details.images[0].url} width="350px" height="350px" />}
                     <h4 className="mt-3">{details.name}</h4>
                     {details.artists && <Link to={"/details/artist/" + details.artists[0].id} id="trackName" className="text-muted"><h5>{details.artists[0].name}</h5></Link>}
-                    <h6>{details.total_tracks} tracks</h6>
+                    <h6 className="mt-3">{details.total_tracks} tracks</h6>
                 </Col>
                 <Col md={8} className="albumTracks" id="tracks">
                     {albumTracks && albumTracks.map(track => {
                       console.log(track)
-                      return <SingleTrack id={track.id} small showCover={false} artist={track.artists[0].name} song={track.name} />
+                      return <SingleTrack artistId={track.artists[0].id} id={track.id} small showCover={false} artist={track.artists[0].name} song={track.name} />
                     })}
                 </Col>
             </Row>}
