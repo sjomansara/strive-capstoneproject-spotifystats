@@ -6,11 +6,13 @@ import PageCover from "../components/PageCover";
 import { Row, Col, Container, Spinner, Alert } from "react-bootstrap";
 import SingleTrack from "../components/SingleTrack";
 import Cookies from 'universal-cookie'
+import { getSavedTracks } from "../helpers/ApiHelpers";
 
 const RecentlyPlayed = () => {
   const [tracks, setTracks] = useState("")
   const [isError, setIsError] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [favoriteIds, setFavoriteIds] = useState([])
   const cookies = new Cookies()
   const token = cookies.get("token")
 
@@ -39,8 +41,21 @@ const RecentlyPlayed = () => {
     }
   }
 
+  const setSavedIds = async () => {
+    let savedSongs = await getSavedTracks(token)
+    let realList = savedSongs.items
+    // console.log("savedSongs is: ", savedSongs)
+    let savedIds = []
+    for (let i = 0; i < realList.length; i++) {
+      savedIds.push(realList[i].track.id)
+    }
+    setFavoriteIds(savedIds)
+    // console.log("savedids is: ", savedIds)
+  }
+
   useEffect(() => {
     fetchTracks()
+    setSavedIds()
   }, [])
 
   return (
@@ -66,7 +81,7 @@ const RecentlyPlayed = () => {
                 }
                 {tracks && tracks.map(result => {
                   counter += 1
-                  return <SingleTrack artistId={result.track.artists[0].id} id={result.track.id} showCover hasDate key={result.track.id + (Math.random() * 10000)} showTimes hasNumbers={false} number={counter} song={result.track.name} albumId={result.track.album.id} img={result.track.album.images[0].url} artist={result.track.artists[0].name} time={result.played_at} />
+                  return <SingleTrack isFavorite={favoriteIds.includes(result.track.id)} artistId={result.track.artists[0].id} id={result.track.id} showCover hasDate key={result.track.id + (Math.random() * 10000)} showTimes hasNumbers={false} number={counter} song={result.track.name} albumId={result.track.album.id} img={result.track.album.images[0].url} artist={result.track.artists[0].name} time={result.played_at} />
                 }
               )}
                 </Container>

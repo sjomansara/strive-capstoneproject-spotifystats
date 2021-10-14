@@ -6,7 +6,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 
 const SingleTrack = (props) => {
-    const [isFavorite, setIsFavorite] = useState(false)
+    const [isFavorite, setIsFavorite] = useState(props.isFavorite ? props.isFavorite : false)
 
     const onFavorite = () => {
         setIsFavorite(!isFavorite)
