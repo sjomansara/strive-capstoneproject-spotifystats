@@ -14,9 +14,9 @@ const SideBar = () => {
                 <div className="sidebar-sticky"></div>
                 <NavbarItem icon={faUser} isActive={location.startsWith("/userpage")} startsWith="/userpage" to="/userpage" text="Profile" />
                 <NavbarItem icon={faVolumeUp} isActive={location.startsWith("/recentlyplayed")} startsWith="/recentlyplayed" isActive={location.startsWith("/recentlyplayed")} to="/recentlyplayed" text="Recently Played" />
-                <NavbarItem icon={faMusic} to="/tracks/long_term" startsWith="/tracks" text="Tracks" />
+                <NavbarItem icon={faMusic} to="/tracks/long_term" startsWith="/tracks" text="Top Tracks" />
                 {/* <NavbarItem icon={faCompactDisc} to="/albums" text="Albums" /> */}
-                <NavbarItem icon={faMicrophoneAlt} startsWith="/artists" isActive={location.startsWith("/artists")} to="/artists/long_term" text="Artists" />
+                <NavbarItem icon={faMicrophoneAlt} startsWith="/artists" isActive={location.startsWith("/artists")} to="/artists/long_term" text="Top Artists" />
             </Nav>
         </div>
         );
