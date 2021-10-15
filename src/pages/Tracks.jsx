@@ -7,11 +7,13 @@ import SingleTrack from "../components/SingleTrack";
 import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import { useParams } from "react-router-dom";
+import { checkedIfSavedTracks } from "../helpers/ApiHelpers";
 
 const Tracks = () => {
   const [tracks, setTracks] = useState("")
   const [isError, setIsError] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [boolList, setBoolList] = useState(undefined)
   const cookies = new Cookies()
   const token = cookies.get("token")
   const params = useParams()
@@ -53,9 +55,36 @@ const Tracks = () => {
     }
   }
 
+  const checkFavorites = async (songs) => {
+    let boolArray = []
+    for (let i = 0; i < songs.length; i++) {
+      boolArray.push(songs[i].id)
+    }
+
+    let idString = ""
+    for (let j = 0; j < boolArray.length; j++) {
+      idString += boolArray[j] + ","
+    }
+
+    let resolved = await checkedIfSavedTracks(token, idString)
+    console.log("resolved is: ", resolved)
+
+    setBoolList(resolved)
+  }
+
   useEffect(() => {
     fetchTracks()
+
+    // if (tracks !== "") {
+    //   checkFavorites(tracks)
+    // }
   }, [params])
+
+  useEffect(() => {
+    if (tracks !== "") {
+      checkFavorites(tracks)
+    }
+  }, [tracks])
 
   return (
     <div>
@@ -77,10 +106,11 @@ const Tracks = () => {
                         An error occurred!
                     </Alert>
                 }
-              {tracks && tracks.map(result => {
+              {boolList && tracks.map(result => {
                   console.log("result is: ", result)
+                  console.log(boolList[counter - 1])
                   counter += 1
-                  return <SingleTrack id={result.id} artistId={result.artists[0].id} albumId={result.album.id} showCover hasDate={false} key={result.id + (Math.random() * 10000)} showTimes hasNumbers={true} number={counter} song={result.name} img={result.album.images[0].url} artist={result.artists[0].name}/>
+                  return <SingleTrack isFavorite={boolList[counter - 1]} id={result.id} artistId={result.artists[0].id} albumId={result.album.id} showCover hasDate={false} key={result.id + (Math.random() * 10000)} showTimes hasNumbers={true} number={counter} song={result.name} img={result.album.images[0].url} artist={result.artists[0].name}/>
                 }
               )}
               </Container>

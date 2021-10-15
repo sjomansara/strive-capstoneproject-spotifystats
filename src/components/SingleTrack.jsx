@@ -4,12 +4,23 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import Cookies from 'universal-cookie'
+import { addSavedTrack, deleteSavedTrack } from "../helpers/ApiHelpers"
 
 const SingleTrack = (props) => {
     const [isFavorite, setIsFavorite] = useState(props.isFavorite ? props.isFavorite : false)
 
+    const cookies = new Cookies()
+    const token = cookies.get("token")
+
     const onFavorite = () => {
         setIsFavorite(!isFavorite)
+
+        if (!isFavorite) {
+            addSavedTrack(token, props.id)
+        } else if (isFavorite) {
+            deleteSavedTrack(token, props.id)
+        }
     }
 
     const date = new Date(props.time).toDateString()
