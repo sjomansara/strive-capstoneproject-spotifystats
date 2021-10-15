@@ -18,6 +18,9 @@ const PageCover = () => {
         case "/details":
             header = "Details"
             break
+        case "/recommended":
+            header = "Recommended"
+            break
         default: 
             header = ""
             break
@@ -54,7 +57,7 @@ const PageCover = () => {
                         <h2 className="pl-2" id="pageCoverText">{header}</h2>
                     </Col>
                     <Col md={2}>
-                        {!location.startsWith("/details") && <ButtonDropdown type={location.startsWith("/artists") ? "artist" : "tracks"} />}
+                        {!location.startsWith("/details") && !location.startsWith("/recommended") && <ButtonDropdown type={location.startsWith("/artists") ? "artist" : "tracks"} />}
                     </Col>
                 </Row>
             </Container>

@@ -7,6 +7,7 @@ import Tracks from './pages/Tracks';
 import Albums from './pages/Albums';
 import Artists from './pages/Artists';
 import Details from './pages/Details';
+import Recommended from './pages/Recommended';
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -25,6 +26,7 @@ function App() {
         <Route exact path="/tracks/:time" component={Tracks} />
         <Route exact path="/artists/:time" component={Artists} />
         <Route exact path="/details/:type/:id" component={Details} />
+        <Route exact path="/recommended" component={Recommended} />
       </Switch>
     </Router>
   );
