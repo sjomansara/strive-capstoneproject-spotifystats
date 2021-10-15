@@ -11,6 +11,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 import SingleTrack from "../components/SingleTrack";
 import { Link } from "react-router-dom"
+import { checkedIfSavedTracks, addSavedTrack, deleteSavedTrack } from "../helpers/ApiHelpers";
 
 const Details = () => {
   const [details, setDetails] = useState("") // where the data is
@@ -26,6 +27,12 @@ const Details = () => {
 
   const onFavorite = () => {
       setIsFavorite(!isFavorite)
+
+      if (!isFavorite) {
+        addSavedTrack(token, params.id)
+    } else if (isFavorite) {
+        deleteSavedTrack(token, params.id)
+    }
   }
 
   const fetchDetails = async () => {
