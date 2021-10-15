@@ -26,8 +26,15 @@ const PageCover = () => {
         header = "Top Artists"
     } else if (location.startsWith("/tracks")) {
         header = "Top Tracks"
-    } else if (location.startsWith("/details")) {
-        header = "Details"
+    } else if (location.startsWith("/details/track")) {
+        console.log("location is: ", location)
+        header = "Track Details"
+    } else if (location.startsWith("/details/album")) {
+        console.log("location is: ", location)
+        header = "Album Details"
+    } else if (location.startsWith("/details/artist")) {
+        console.log("location is: ", location)
+        header = "Artist Details"
     }
 
     if (location === "/recentlyplayed" || location === "/details") {
@@ -47,7 +54,7 @@ const PageCover = () => {
                         <h2 className="pl-2" id="pageCoverText">{header}</h2>
                     </Col>
                     <Col md={2}>
-                        {header !== "Details" && <ButtonDropdown type={location.startsWith("/artists") ? "artist" : "tracks"} />}
+                        {!location.startsWith("/details") && <ButtonDropdown type={location.startsWith("/artists") ? "artist" : "tracks"} />}
                     </Col>
                 </Row>
             </Container>

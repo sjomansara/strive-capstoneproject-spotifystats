@@ -23,7 +23,7 @@ const UserPage = () => {
       if (response.ok) {
         let decoded = await response.json()
         setUserData(decoded)
-        console.log(decoded)
+        console.log("user data is: ", decoded)
       }
 
     } catch (error) {
