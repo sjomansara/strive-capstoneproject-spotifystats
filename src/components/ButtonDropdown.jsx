@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { DropdownButton } from "react-bootstrap"
 import { Link, useParams } from "react-router-dom"
 
@@ -21,7 +22,7 @@ const ButtonDropdown = (props) => {
             break
     }
 
-    if (props.type === "artist") {
+    if (props.type === "artists") {
         toArray = ["/artists/short_term", "/artists/medium_term", "/artists/long_term"]
     } else if (props.type === "tracks") {
         toArray = ["/tracks/short_term", "/tracks/medium_term", "/tracks/long_term"]
@@ -34,6 +35,16 @@ const ButtonDropdown = (props) => {
     } else if (value.type === "artists") (
         title = "Artists"
     )
+    
+    console.log("type is: ", props.type)
+
+    const fetchButton = () => {
+        if (props.type === "artists" || props.type === "tracks") {
+            return <Link className="ml-3 dropdownLink" value="All Time" to={toArray[2]}>All time</Link>
+        } else {
+            return <Fragment />
+        }
+    }
 
     return (
         <div>
@@ -46,7 +57,7 @@ const ButtonDropdown = (props) => {
             <br></br>
             <Link className="ml-3 dropdownLink" value="Last 6 months" to={toArray[1]}>{props.type === "recommended" ? "Artists" : "Last 6 months"}</Link>
             <br></br>
-            {props.type === "artist" || props.type === "tracks" && <Link className="ml-3 dropdownLink" value="All Time" to={toArray[2]}>All time</Link>}
+            {fetchButton()}
             </DropdownButton>
         </div>
     )

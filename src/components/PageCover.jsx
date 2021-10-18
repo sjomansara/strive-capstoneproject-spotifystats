@@ -25,6 +25,7 @@ const PageCover = () => {
     }
     if (location.startsWith("/artists")) {
         header = "Top Artists"
+        type = "artists"
     } else if (location.startsWith("/tracks")) {
         header = "Top Tracks"
         type = "tracks"
