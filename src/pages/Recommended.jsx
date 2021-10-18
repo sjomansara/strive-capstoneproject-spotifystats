@@ -2,7 +2,7 @@ import MyFooter from "../components/MyFooter";
 import MyNavbar from "../components/MyNavbar";
 import SideBar from "../components/SideBar";
 import PageCover from "../components/PageCover";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Spinner, Alert } from "react-bootstrap";
 import { useState } from "react";
 import Cookies from "universal-cookie"
 import { useEffect } from "react";
@@ -14,6 +14,8 @@ import SingleArtist from "../components/SingleArtist";
 const Recommended = () => {
   const [trackIds, setTrackIds] = useState([])
   const [recommendations, setRecommendations] = useState()
+  const [isError, setIsError] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   const cookies = new Cookies()
   const token = cookies.get("token")
@@ -39,9 +41,14 @@ const Recommended = () => {
           setTrackIds(idArray)
           console.log("tracks is: ", trackIds)
         }
+        setIsLoading(false)
+      } else {
+        setIsError(true)
+        setIsLoading(false)
       }
     } catch (error) {
-      console.error(error)
+      setIsError(true)
+      setIsLoading(false)
     }
   }
 
@@ -74,6 +81,16 @@ const Recommended = () => {
             </Col>
             <Col md={10}>
                 <Container className="ml-0"><PageCover /></Container>
+                {
+                    isLoading &&
+                    <Spinner animation="border" variant="dark" className="spinner mb-3"/>
+                }
+                  {
+                    isError &&
+                    <Alert variant="danger" className="col-2">
+                        An error occurred!
+                    </Alert>
+                }
                 {recommendations && <Container>{recommendations.map(song => {
                   console.log(song)
                   return <SingleTrack 
