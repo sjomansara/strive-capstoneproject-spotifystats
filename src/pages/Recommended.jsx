@@ -91,7 +91,7 @@ const Recommended = () => {
                         An error occurred!
                     </Alert>
                 }
-                {recommendations && <Container>{recommendations.map(song => {
+                {recommendations && <Container id="tracks" className="ml-0">{recommendations.map(song => {
                   console.log(song)
                   return <SingleTrack 
                     // isFavorite={boolList[counter - 1]}
