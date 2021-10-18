@@ -81,3 +81,49 @@ export const deleteSavedTrack = async (token, ids) => {
         console.error(error)
     }
 }
+
+export const getRecommendedTracks = async (token, songIds) => {
+    let fetchString = "https://api.spotify.com/v1/recommendations?seed_tracks=" + songIds
+
+    try {
+        const response = await fetch(fetchString, {
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        })
+        if (response.ok) {
+            let readable = await response.json()
+            console.log(readable.tracks)
+            return readable.tracks
+
+            // const decoded = await response.json()
+            // console.log("decoded saved is: ", decoded, typeof(decoded))
+            // return decoded
+        }
+      } catch (error) {
+        console.error(error)
+    }
+}
+
+export const getRecommendedArtists = async (token, artistIds) => {
+  let fetchString = "https://api.spotify.com/v1/recommendations?seed_artists=" + artistIds
+
+  try {
+      const response = await fetch(fetchString, {
+          headers: {
+              "Authorization": "Bearer " + token
+          }
+      })
+      if (response.ok) {
+          let readable = await response.json()
+          console.log(readable.tracks)
+          return readable.tracks
+
+          // const decoded = await response.json()
+          // console.log("decoded saved is: ", decoded, typeof(decoded))
+          // return decoded
+      }
+    } catch (error) {
+      console.error(error)
+  }
+}

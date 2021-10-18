@@ -3,6 +3,7 @@ import ButtonDropdown from "./ButtonDropdown"
 
 const PageCover = () => {
     const location = window.location.pathname
+    let type
     let header = ""
 
     switch(location) {
@@ -18,9 +19,6 @@ const PageCover = () => {
         case "/details":
             header = "Details"
             break
-        case "/recommended":
-            header = "Recommended"
-            break
         default: 
             header = ""
             break
@@ -29,6 +27,7 @@ const PageCover = () => {
         header = "Top Artists"
     } else if (location.startsWith("/tracks")) {
         header = "Top Tracks"
+        type = "tracks"
     } else if (location.startsWith("/details/track")) {
         console.log("location is: ", location)
         header = "Track Details"
@@ -38,6 +37,11 @@ const PageCover = () => {
     } else if (location.startsWith("/details/artist")) {
         console.log("location is: ", location)
         header = "Artist Details"
+        type = "artist"
+    } else if (location.startsWith("/recommended")) {
+        console.log("location is: ", location)
+        header = "Recommended Tracks"
+        type = "recommended"
     }
 
     if (location === "/recentlyplayed" || location === "/details") {
@@ -57,7 +61,7 @@ const PageCover = () => {
                         <h2 className="pl-2" id="pageCoverText">{header}</h2>
                     </Col>
                     <Col md={2}>
-                        {!location.startsWith("/details") && !location.startsWith("/recommended") && <ButtonDropdown type={location.startsWith("/artists") ? "artist" : "tracks"} />}
+                        {!location.startsWith("/details") && !location.startsWith("/recommended") && <ButtonDropdown type={type} />}
                     </Col>
                 </Row>
             </Container>
