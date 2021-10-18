@@ -2,7 +2,7 @@ import MyFooter from "../components/MyFooter"
 import MyNavbar from "../components/MyNavbar"
 import Profile from "../components/Profile";
 import SideBar from "../components/SideBar";
-import { Row, Col, Container } from "react-bootstrap"
+import { Row, Col, Container, Spinner, Alert } from "react-bootstrap"
 import { useState } from "react";
 import { useEffect } from "react";
 import Cookies from 'universal-cookie'
@@ -14,6 +14,8 @@ const UserPage = () => {
   const [playlistData, setPlaylistData] = useState()
   const cookies = new Cookies()
   const token = cookies.get("token")
+  const [isError, setIsError] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   const fetchUserData = async () => {
     try {
@@ -27,6 +29,7 @@ const UserPage = () => {
         let decoded = await response.json()
         setUserData(decoded)
         console.log("user data is: ", decoded)
+        setIsLoading(false)
       }
 
     } catch (error) {
@@ -51,10 +54,14 @@ const UserPage = () => {
         let decoded = await response.json()
         setPlaylistData(decoded.items)
         console.log("playlists is: ", decoded.items)
+        setIsLoading(false)
+      } else {
+        setIsError(true)
+        setIsLoading(false)
       }
-
     } catch (error) {
-      console.error(error)
+      setIsError(true)
+      setIsLoading(false)
     }
   }
 
@@ -67,6 +74,16 @@ const UserPage = () => {
         </Col>
         <Col md={10}>
         <Container className="ml-0"><Profile userInfo={userData} /></Container>
+        {
+                    isLoading &&
+                    <Spinner animation="border" variant="dark" className="spinner mb-3"/>
+                }
+                  {
+                    isError &&
+                    <Alert variant="danger" className="col-2">
+                        An error occurred!
+                    </Alert>
+                } 
         <Container><UserInfo userInfo={userData} /></Container>
         <Container id="playlists" className="ml-3 mt-5">
         <h4 className="text-muted mb-4">Your Playlists</h4>
