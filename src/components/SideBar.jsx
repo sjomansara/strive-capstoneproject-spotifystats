@@ -6,7 +6,7 @@ import NavbarItem from "./NavbarItem";
 
 const SideBar = () => {
     const location = window.location.pathname
-    console.log(location)
+    console.log("location is: ", location)
 
     return (
         <div id="sideBar">
@@ -17,7 +17,7 @@ const SideBar = () => {
                 <NavbarItem icon={faMusic} to="/tracks/long_term" startsWith="/tracks" text="Top Tracks" />
                 {/* <NavbarItem icon={faCompactDisc} to="/albums" text="Albums" /> */}
                 <NavbarItem icon={faMicrophoneAlt} startsWith="/artists" isActive={location.startsWith("/artists")} to="/artists/long_term" text="Top Artists" />
-                <NavbarItem icon={faCompactDisc} to="/recommended/tracks" text="Recommended" />
+                <NavbarItem icon={faCompactDisc} startsWith="/recommended" isActive={location.startsWith("/recommended")} to="/recommended/tracks" text="Recommended" />
             </Nav>
         </div>
         );
