@@ -69,11 +69,11 @@ const UserPage = () => {
         <Container className="ml-0"><Profile userInfo={userData} /></Container>
         <Container><UserInfo userInfo={userData} /></Container>
         <Container id="playlists" className="ml-3 mt-5">
-        <h4 className="text-muted mb-3">Your Playlists</h4>
+        <h4 className="text-muted mb-4">Your Playlists</h4>
         <Row>
         {playlistData && playlistData.map(playlist => {
           console.log("playlist is: ", playlist)
-            return <a href={playlist.external_urls.spotify}><SingleArtist hideLink hideNumber img={playlist.images[0].url} artist={playlist.name}/></a>
+            return <a id="playlistLink" href={playlist.external_urls.spotify}><SingleArtist hideLink hideNumber img={playlist.images[0].url} artist={playlist.name}/></a>
           }
         )}
         </Row>

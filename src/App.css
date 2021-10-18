@@ -244,6 +244,7 @@
 #albumCard:hover {
   border: 0;
   background-color: #faf4ed;
+  min-height: 310px;
 }
 
 #tracks {
@@ -301,4 +302,8 @@
 #playlists {
   font-family: 'Montserrat', sans-serif;
   margin-bottom: 75px;
+}
+
+#playlistLink {
+  text-decoration: none;
 }
