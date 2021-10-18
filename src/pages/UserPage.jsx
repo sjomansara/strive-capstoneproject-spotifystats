@@ -72,7 +72,8 @@ const UserPage = () => {
         <h4 className="text-muted mb-3">Your Playlists</h4>
         <Row>
         {playlistData && playlistData.map(playlist => {
-            return <SingleArtist hideNumber img={playlist.images[0].url} artist={playlist.name}/>
+          console.log("playlist is: ", playlist)
+            return <a href={playlist.external_urls.spotify}><SingleArtist hideLink hideNumber img={playlist.images[0].url} artist={playlist.name}/></a>
           }
         )}
         </Row>
